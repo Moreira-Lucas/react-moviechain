@@ -1,10 +1,18 @@
 import React from 'react';
+
+import { NavigateBeforeOutlined, NavigateNextOutlined } from '@material-ui/icons';
 import './MovieRow.css';
 
 export default ({title, items})=>{
   return(
     <div className="movieRow">
     <h2>{title}</h2>
+    <div className="movieRow--left">
+      <NavigateBeforeOutlined style={{fontSize:50}} />
+    </div>
+    <div className="movieRow--right">
+      <NavigateNextOutlined style={{fontSize:50}} />
+    </div>
     <div className="movieRow--listArea">
       <div className="movieRow--list">
       {items.results.length > 0 && items.results.map((item, key)=>(
