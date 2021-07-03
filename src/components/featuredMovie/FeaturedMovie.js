@@ -30,7 +30,7 @@ for(let i in item.genres){
           <div className="featured--description">{item.overview}</div>
           <div className="featured--buttons">
               <a href={`/watch/${item.id}`} >Assistir</a >
-              <a href={`/watch/${item.id}`} >+Minha Lista</a >
+              <a href={`/list/add/${item.id}`} >+Minha Lista</a >
           </div>
           <div className="featured--genres"><strong>Gêneros:</strong>{genres.join(', ')}</div>  
         </div>
