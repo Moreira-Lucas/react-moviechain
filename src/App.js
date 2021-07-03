@@ -3,13 +3,16 @@ import './App.css';
 import MovieRow from './components/MovieRow';
 import Tmdb from './Tmdb';
 import FeaturedMovie from './components/featuredMovie/FeaturedMovie';
+import Header from './components/featuredMovie/header/Header';
 
 
 const App = () => {
   
   const [movieList, setMovieList] = useState([])
   const [featuredData, setFeaturedData] = useState(null)
-  
+  const [blackHeader, setBlackHeader] = useState(false)
+
+
   useEffect(()=>{
    const loadAll = async () =>{
     // Pegando a lista TOTAL 
@@ -31,10 +34,28 @@ const App = () => {
 
    }, []);
     
+   useEffect(()=>{
+    const scrollListener = () =>{
+      if(window.scrollY >20){
+        setBlackHeader(true);
+      }else{
+        setBlackHeader(false)
+      }
+
+    }
+    window.addEventListener('scroll', scrollListener);
+
+
+    return () =>{
+      window.removeEventListener('scroll', scrollListener)
+    }
+   }, [])
   
   return (
     <div className="page">
-     
+     <Header black={blackHeader}/>
+
+
      {featuredData &&
      <FeaturedMovie item={featuredData} />
 
@@ -47,6 +68,12 @@ const App = () => {
           <MovieRow key={key} title={item.title} items={item.items}/>
         ))}
       </section>
+
+      <footer>
+        Desenvolvido por <strong>Lucas Henrique</strong> <br />
+        Direitos de imagem e dados pegos do site <strong>Themoviedb.org</strong>
+
+      </footer>
     </div>
   );
 }
