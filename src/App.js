@@ -20,7 +20,7 @@ const App = () => {
     setMovieList(list);
 
 
-    //Pegando o featured
+    //Pegando o filme principal 
     let originals = list.filter(i => i.slug === "originals");
     let randomChosen = Math.floor(Math.random()*(originals[0].items.results.length -1));
     let chosen = originals[0].items.results[randomChosen];
@@ -74,6 +74,14 @@ const App = () => {
         Direitos de imagem e dados pegos do site <strong>Themoviedb.org</strong>
 
       </footer>
+     
+     
+     {movieList.length<=0 &&
+     <div className="loading">
+     <img src="https://media.filmelier.com/noticias/br/2020/03/Netflix_LoadTime.gif" alt="loading" />
+   </div>
+     }
+      
     </div>
   );
 }
